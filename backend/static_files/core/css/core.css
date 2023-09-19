@@ -1,0 +1,24 @@
+#header-row{
+    margin: 3rem 0 0 1rem;
+}
+#header-django{
+    color: rgb(8, 110, 8);
+    font-weight: bold;
+}
+
+#logo-django {
+    width: auto;
+    height: auto;
+}
+
+#header-release{
+    color: rgb(93, 192, 93);
+    text-decoration: none;
+}
+h3 {
+    color: rgb(116, 112, 112);
+}
+
+p {
+    color: rgb(51, 49, 49);
+}

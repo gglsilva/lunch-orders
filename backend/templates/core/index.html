@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'core/css/core.css' %}">
+{% endblock head %}
+
+{% block content %}
+    <div class="container">
+        <div class="row d-flex justify-content-around" id="header-row">
+            <div class="col">
+                <h3 id="header-django">Django Boilerplate V.2</h3>
+            </div>
+            <div class="col d-flex justify-content-end mr-5">  
+                <h3>View <a href="https://docs.djangoproject.com/en/4.1/" id="header-release">release notes</a> for Django 4.0</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="d-flex justify-content-center mt-5">
+                <img src="{% static 'core/img/django_logo.png' %}" alt="" id="logo-django">
+            </div>
+            <div class="mt-5">
+                <div class="col">
+                    <h3>Soluta, animi sit eligendi nam culpa explicabo excepturi odio !</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab neque quasi quis laboriosam earum sed? Dignissimos officia quam quod in, commodi magnam, eveniet, natus aut tenetur recusandae ipsam id sint!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
