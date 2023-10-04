@@ -1,0 +1,68 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    background: #FDECC1;
+}
+#btn-register:hover{
+    border: 1px solid white;
+}
+
+#hint_id_username{
+    display: none;
+}
+/* Button */
+
+#btn-register{
+    background-color: transparent;
+    border: #fff 2px solid;   
+    color: white;
+    border-radius: 4px !important; 
+    transition: 0.6s;
+}
+
+#btn-register:hover{
+    background-color: #C6401D;
+    border:  #C6401D 2px solid;
+}
+
+#right-content p{
+    font-size: 12px;
+}
+
+#div_id_username, 
+#div_id_first_name,
+#div_id_email,
+#div_id_password,
+#div_id_password2{
+    margin-bottom: 8px !important;
+}
+
+@media only screen and (max-width:991px){
+    #id_username, 
+    #id_first_name,
+    #id_email,
+    #id_password,
+    #id_password2 {
+        height: 35px;
+        background-color: #e7e7e7fd;
+        border-radius: 5px;
+    }
+
+    #btn-register{ 
+        background-color:#EC8E00 !important;
+    }
+
+    #btn-register:hover{
+        background: transparent !important;
+        color: #EC8E00 !important;
+        border: #EC8E00 1.5px solid;
+    }
+
+}
+@media only screen and (max-width:575px){
+    body{
+        background-color: white !important;
+    }
+}
+
+
+

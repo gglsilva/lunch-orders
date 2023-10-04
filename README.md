@@ -63,6 +63,18 @@ Manage migrate
 docker-compose run --rm web python manage.py createsuperuser
 ```
 
+Create new app
+- para criar um novo app é necessario esta executando o docker, acessar o container da aplicação web, criar a pasta e executar o comando starapp .
+
+Exemplo: 
+1 - docker exec -it lunch_orders_web_1 bash
+2 - mkdir backend/apps/<appname>
+3 - python manage.py startapp product apps/product
+
+```bash
+mkdir backend/apps/<appname>
+```
+
 ## Implantação
 
 Notas adicionais sobre como implantar isso em um sistema ativo ou de lançamento. Explicando os ramos mais importantes, quais pipelines eles acionam e como atualizar o banco de dados (se houver algo especial).
@@ -76,3 +88,7 @@ Notas adicionais sobre como implantar isso em um sistema ativo ou de lançamento
 ### Branches
 
 * main:
+
+
+### entrar dentro do container do django
+docker exec -it lunch_orders_web_1 bash

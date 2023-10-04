@@ -17,10 +17,16 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from apps.account.views import dashboard
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('core/', include('apps.core.pages.urls')),
+    path('', dashboard, name='dashboard'),
+
+    path('account/', include('apps.account.urls')),
+    path('order/', include('apps.order.urls', namespace='order')),
+    path('product/', include('apps.product.urls')),
 ]
 
 if settings.DEBUG:
