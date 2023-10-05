@@ -40,10 +40,17 @@ DJANGO_APPS = [
 
 THIRD_APPS = [
     'debug_toolbar',
+    'crispy_forms',
+    "crispy_bootstrap5",
+    'easy_thumbnails',
 ]
 
 MY_APPS = [
     'apps.core',
+    'apps.product',
+    'apps.account',
+    'apps.order',
+    'apps.menu',
 ]
 
 INSTALLED_APPS = []
@@ -59,6 +66,18 @@ INTERNAL_IPS = [
 
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
+
+
+# Adicione o domínio do ngrok (sem o protocolo https://)
+NGROK_DOMAIN = 'https://26c6-131-196-67-132.ngrok-free.app' # Modificar
+
+# Defina as origens confiáveis
+CSRF_TRUSTED_ORIGINS = [
+    'https://26c6-131-196-67-132.ngrok-free.app', # Modificar
+    # 'localhost',  # Se estiver usando localhost
+    # Outros domínios confiáveis, se aplicável
+]
+
 
 # ==============================================================================
 # MIDDLEWARE SETTINGS
@@ -106,16 +125,16 @@ TEMPLATES = [
 # DATABASES SETTINGS
 # ==============================================================================
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USERNAME"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOSTNAME"),
-        "PORT": config("DB_PORT", cast=int),
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": config("DB_NAME"),
+#         "USER": config("DB_USERNAME"),
+#         "PASSWORD": config("DB_PASSWORD"),
+#         "HOST": config("DB_HOSTNAME"),
+#         "PORT": config("DB_PORT", cast=int),
+#     }
+# }
 
 
 # ==============================================================================
@@ -162,6 +181,13 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(ASSETS_MEDIA_DIR, 'assets')  # project/assets
 
 
+# REDIRECT
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+
 # ==============================================================================
 # MEDIA FILES SETTINGS
 # ==============================================================================
@@ -172,3 +198,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Celery
 CELERY_BROKER_URL = config("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = config("REDIS_BACKEND")
+
+# FORMS TEMPLATES
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -1,0 +1,307 @@
+{% extends "base-dashboard.html" %} 
+{% block title %}Dashboard{% endblock %} 
+{% csrf_token %}
+{%load static %} 
+{% load account_tags %} 
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/modal_product.css' %}" />
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+{% endblock head %} 
+
+{% block content %}
+<div class="row mt-4 justify-content-around">
+  <div class="col-6">
+    <div class="card shadow-sm">
+      <div id="card-order-all" class="card-header fw-bold text-center text-white bg-orange-500">
+        TOTAL DE PEDIDOS
+      </div>
+      <div class="card-body">
+        <p class="card-text text-custon fw-bold text-center">
+          {% total_order request.user.profile %}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card shadow-sm">
+      <div class="card-header fw-bold text-center text-white bg-orange-500">
+        PEDIDOS HOJE
+      </div>
+      <div class="card-body">
+        <p class="card-text text-custon fw-bold text-center">
+          {% total_order_today request.user.profile %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabela -->
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="d-flex justify-content-between align-itens-center mb-2">
+      <h3 class="fw-bolder mb-0">Histórico de Pedidos</h3>
+      <!-- Button trigger modal -->
+      <div>
+        {% if user.is_superuser %}
+        <button
+          type="button"
+          class="btn btn-sec-custom"
+          id="print-order"
+          title="Imprimir Pedidos"
+          onclick="printOrderDay()"
+          data-content-url="{% url 'order:print_report_orders' %}"
+        >
+          <i id="icon-download" class="far fa-file-pdf"></i>
+        </button>
+        {% endif %}
+        <button
+          type="button"
+          class="btn btn-sec-custom"
+          title="Editar Pedido"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          data-content-url="{% url 'order:order_edit' %}"
+        >
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-pri-custom"
+          title="Novo Pedido"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          data-content-url="{% url 'product:product_list' %}"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      
+    </div>  
+    <table id="tabela-listar">
+      <thead>
+        <tr>
+          <th id="order-header">Nº PEDIDO</th>
+          <th>DATA</th>
+          <th>PRODUTOS</th>
+          <th>OBSERVAÇÕES</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for order in orders %}
+        <tr id="data">
+          <td>{{ order.id }}</td>
+          <td>{{ order.created|date:"d/m/Y" }}</td>
+          <td>{{ order.get_product_for_order|truncatechars:50 }}</td>
+          <td>{{ order.return_note_with_string|truncatechars:30 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% include 'account/modal.html' %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.3/datatables.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#tabela-listar").DataTable({
+      "responsive": true,    
+      "order": [[ 0, "dcs" ]],
+      "bLengthChange" : false,
+      "pagingType": 'full',
+      "pageLength": 8,
+      "columnDefs": [
+        { "orderable": false, "targets": [0, 2, 3] }
+      ],
+      
+
+      searching: false, // desabilita a funcionalidade de pesquisa
+      oLanguage: {
+        sProcessing: "Processando...",
+        sLengthMenu: "_MENU_ Registros",
+        sZeroRecords: "Não foram encontrados resultados",
+        sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        sInfoEmpty: "Mostrando de 0 até 0 de 0 registros",
+        sInfoFiltered: "",
+        sInfoPostFix: "",
+        sSearch: "Buscar:",
+        sUrl: "",
+        oPaginate: {
+          sFirst: "Primeiro",
+          sPrevious: "Anterior",
+          sNext: "Seguinte",
+          sLast: "Último",
+        },
+      },
+    });
+    
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    function adjustColumnHeader() {
+        if ($(window).width() <= 768) { // Defina o ponto de quebra para dispositivos móveis
+            $('#order-header').text('Nº');
+            $('#card-order-all').text('TOTAL PEDIDOS');
+        } else {
+            $('#order-header').text('Nº PEDIDO');
+            $('#card-order-all').text('TOTAL DE PEDIDOS');
+        }
+    }
+
+    // Execute a função ao carregar a página e ao redimensionar a tela
+    adjustColumnHeader();
+    $(window).resize(adjustColumnHeader);
+  });
+  // Novo Pedido
+  document
+    .getElementById("staticBackdrop")
+    .addEventListener("show.bs.modal", function (event) {
+      const button = event.relatedTarget; // Botão que acionou o modal
+      const contentUrl = button.getAttribute("data-content-url"); // Obtenha a URL do atributo personalizado
+      // Realize a chamada AJAX usando a URL obtida
+      // O exemplo a seguir usa a função fetch para fazer a chamada AJAX
+
+      fetch(contentUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          // Coloque o conteúdo retornado pela chamada AJAX no corpo do modal
+          const modalBody = document.querySelector(".modal-body");
+          // console.log(data)
+          modalBody.innerHTML = data.data;
+        })
+        .catch((error) => {
+          console.error(
+            "Ocorreu um erro ao carregar o conteúdo do modal:",
+            error
+          );
+        });
+  });
+
+  function printOrderDay() {
+  const button = document.getElementById("print-order");
+  const contentUrl = button.getAttribute("data-content-url");
+
+  fetch(contentUrl)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const url = window.URL.createObjectURL(blob);
+
+      // Abrir o PDF em uma nova guia
+      window.open(url, '_blank');
+
+      window.URL.revokeObjectURL(url);
+    })
+    .catch((error) => {
+      console.error("Ocorreu um erro ao carregar o conteúdo do pdf:", error);
+    });
+}
+  
+
+  function getProductSelect() {
+    var checkboxes = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    var product = new Array();
+
+    for (var checkbox of checkboxes) {
+      product.push(checkbox.value);
+    }
+    return product;
+  }
+
+  function getMessage() {
+    return document.getElementById("msg").value;
+  }
+
+  function setProfileClient(){
+    var isSuperUser = '{{ user.is_superuser }}'
+  
+    if(isSuperUser ){
+      return "{{ user }}";
+    } else {
+      var client = document.getElementById('select-profile');
+
+      return client.value
+    }
+  }
+
+  // function getOrderNumber(){
+  //   var number = '{{ order_number }}'
+  //   // console.log(number)
+  //   // if (number){
+  //   //   return number
+  //   // }
+  //   return number
+  // }
+  function getOrderNumber(){
+    const button = document.getElementById("order-id");
+    const orderId = button.getAttribute("data-order-id");
+    if(orderId){
+      return orderId
+    } else{
+      return null
+    }
+  }
+
+  function saveContent() {
+    const button = document.getElementById("btn-confirm");
+    const orderId = button.getAttribute("data-order-id");
+    // console.log(getOrderNumber())
+    // Dados a serem enviados para o backend
+    const dataToSend = {
+      order_number: getOrderNumber(),
+      produtos: getProductSelect(),
+      cliente: setProfileClient(),
+      msg: getMessage(),
+      csrfmiddlewaretoken: "{{ csrf_token }}",
+    };
+
+    if (dataToSend.produtos.length === 0) {
+      alert("É necessário selecionar pelo menos um produto!" ); 
+    } else {
+      //  URL do endpoint do backend
+      const url = "{% url 'order:action_fetch_create_order' %}";
+
+      // Configuração da requisição
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": dataToSend.csrfmiddlewaretoken,
+        },
+        body: JSON.stringify(dataToSend),
+      };
+
+      // Enviando a requisição para o backend usando fetch
+      fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data["response"] === "success") {
+            console.log(data["response"]);
+          }
+          alert("Obrigado pelo seu pedido!");
+        })
+        .catch((error) => {
+          console.error("error: " + error); // exibe na aba console do navegador
+          // alert("error: " + error); // exibe janela de texto
+        })
+        .finally(() => {
+          document.getElementById("msg").value = "";
+          $("#staticBackdrop").hide();
+          $('.modal-backdrop').remove();
+          location.reload();
+        });
+    }
+
+    
+  };
+</script>
+
+{% endblock %}

@@ -17,6 +17,7 @@ RUN pip install -U pipenv
 
 # install project dependencies
 RUN pipenv install --system
+
 RUN apt-get update -y && \
     apt-get install -y netcat
 
