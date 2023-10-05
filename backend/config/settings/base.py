@@ -67,6 +67,18 @@ INTERNAL_IPS = [
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 
+
+# Adicione o domínio do ngrok (sem o protocolo https://)
+NGROK_DOMAIN = 'https://26c6-131-196-67-132.ngrok-free.app' # Modificar
+
+# Defina as origens confiáveis
+CSRF_TRUSTED_ORIGINS = [
+    'https://26c6-131-196-67-132.ngrok-free.app', # Modificar
+    # 'localhost',  # Se estiver usando localhost
+    # Outros domínios confiáveis, se aplicável
+]
+
+
 # ==============================================================================
 # MIDDLEWARE SETTINGS
 # ==============================================================================
