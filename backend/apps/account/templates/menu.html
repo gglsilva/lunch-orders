@@ -45,7 +45,7 @@
           >
             <span id="user-span" class="user fw-bolder text-white">
               {% if request.user.is_authenticated %}
-                Olá, {{ request.user.first_name|upper }} 
+                Olá, {{ request.user.first_name|title }} 
                 <i id="user-icon" class="fas fa-user"></i>
               {% endif %}
             </span>

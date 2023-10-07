@@ -10,6 +10,7 @@
                     <input 
                         class="checkbox-{{ opcao.id }}" 
                         type="checkbox" 
+                        id="checkbox-{{ opcao.id }}"
                         value="{{ opcao.id }}"
                         {% if opcao.name in last_order.get_product_for_order %} checked {% endif %}
                     >
@@ -29,12 +30,13 @@
                     <!-- Renderize os dados na coluna atual -->
                     <div class="product-select">
                         <input 
-                            class="checkbox-{{ opcao.id }}"
+                            class="checkbox-{{ acompanhamento.id }}"
+                            id="checkbox-{{ acompanhamento.id }}"
                             type="checkbox" 
                             value="{{ acompanhamento.id }}"
                             {% if acompanhamento.name in last_order.get_product_for_order %} checked {% endif %}
                         >
-                        <label class="product-item" for="checkbox-{{ opcao.id }}" >{{ acompanhamento.name }}</label>
+                        <label class="product-item" for="checkbox-{{ acompanhamento.id }}">{{ acompanhamento.name }}</label>
                     </div>
                 </div>
             {% endfor %}

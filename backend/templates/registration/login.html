@@ -31,8 +31,8 @@
             <input type="hidden" name="next" value="{{ next }}"> 
             <div class="input-group d-flex justify-content-between align-content-center mt-1">
               <div class="form-check m-0 p-0">
-                <input class="checkbox" type="checkbox">
-                <label class="remember-password">Lembrar senha</label>
+                <input class="checkbox" type="checkbox" id="savePassword">
+                <label class="remember-password" for="savePassword">Lembrar senha</label>
               </div>
               <div>
                 <a class="forget-password" href="{% url 'password_reset' %}">Esqueci minha senha</a>

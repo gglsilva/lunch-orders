@@ -2,9 +2,6 @@ body{
     font-family: 'Open Sans', sans-serif;
     background: #FDECC1;
 }
-#btn-register:hover{
-    border: 1px solid white;
-}
 
 #hint_id_username{
     display: none;
@@ -12,16 +9,17 @@ body{
 /* Button */
 
 #btn-register{
-    background-color: transparent;
-    border: #fff 2px solid;   
-    color: white;
+    background-color: #D84012;  
+    margin-top: 10px;
+    color: #FEF2CB;
+    font-weight: bold;
     border-radius: 4px !important; 
     transition: 0.6s;
 }
 
 #btn-register:hover{
-    background-color: #C6401D;
-    border:  #C6401D 2px solid;
+    background-color: #FC5D19;
+    color: white;
 }
 
 #right-content p{
@@ -33,7 +31,10 @@ body{
 #div_id_email,
 #div_id_password,
 #div_id_password2{
-    margin-bottom: 8px !important;
+    margin-bottom: 6px !important;
+}
+.form-control{
+    padding: 4px 8px;
 }
 
 @media only screen and (max-width:991px){
@@ -46,15 +47,9 @@ body{
         background-color: #e7e7e7fd;
         border-radius: 5px;
     }
-
-    #btn-register{ 
-        background-color:#EC8E00 !important;
-    }
-
-    #btn-register:hover{
-        background: transparent !important;
-        color: #EC8E00 !important;
-        border: #EC8E00 1.5px solid;
+    #right-content{
+        background-color: white;
+        color: black;
     }
 
 }
@@ -62,6 +57,17 @@ body{
     body{
         background-color: white !important;
     }
+    #register-account{
+        background-color: white !important; 
+    }
+    .left-content{
+        visibility: hidden!important;
+        width: 0;
+    }
+    #right-content{
+        padding: 1em !important;
+    }
+
 }
 
 

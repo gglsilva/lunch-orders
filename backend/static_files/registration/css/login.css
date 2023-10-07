@@ -27,36 +27,35 @@ body{
     text-decoration: none;
     color: white;
     font-size: 14px !important;
-    
+}
+.forget-password:hover{
+    color: #A95800;
 }
 
 /* BUTTONS */
-.btn-register {
-    background-color: transparent;
-    border: #fff 2px solid;   
-    color: white;
+.btn-login{
+    background-color: #D84012;
+    color: #FEF2CB;
+    font-weight: bold;
     border-radius: 4px !important; 
     transition: 0.6s;
 }
-.btn-login{
-    background-color: #fff;
-    color: #EC8E00;
-    border: #fff 2px solid;
+.btn-login:hover{
+    background-color: #FC5D19;
+    color: white;
+}
+.btn-register {
+    background-color: #D84012;
+    color: #FEF2CB;
+    font-weight: bold;
     border-radius: 4px !important; 
-    transition: 0.4s;
+    transition: 0.6s;
+}
+.btn-register:hover {
+    background-color: #FC5D19;
+    color: white;
 }
 
-.btn-register:hover {
-    background-color: white;
-    color: #EC8E00;
-    font-weight: bold;
-}
-.btn-login:hover{
-    background-color: transparent;
-    color: white;
-    font-weight: bold;
-    border: 2px solid white;
-}
 /* Social */
 #social-access {
     font-size: 14px;
@@ -100,29 +99,10 @@ body{
     /* BUTTONS */
     .btn-register {
         margin-top: 1.5em;
-        background-color: transparent;
-        border: #EC8E00 2px solid;   
-        color: #EC8E00;
-        border-radius: 4px !important; 
     }
     .btn-login{
         margin-top: 1.5em;
-        background-color: #EC8E00;
-        color: #fff;
-        border: #EC8E00 2px solid;
-        border-radius: 4px !important; 
     }   
-    .btn-register:hover {
-        background-color: #EC8E00;
-        color: white;
-        font-weight: bold;
-    }
-    .btn-login:hover{
-        background-color: white;
-        color: #EC8E00;
-        font-weight: bold;
-        border: 2px solid #EC8E00;
-    }
     .forget-password{
         color: #EC8E00;
     }
