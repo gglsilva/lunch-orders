@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load core_tags %}
+
+{% block head %}{% endblock head %}
+
+{% block content%}
+<style>
+    .card-info{
+        padding: 1.5em;
+    }
+    .gradient-blue{
+        background: rgb(148,202,244);
+        background: linear-gradient(0deg, rgba(148,202,244,1) 0%, rgba(0,140,247,1) 100%);
+    }
+    .gradient-orange{
+        background: rgb(247,194,113);
+        background: linear-gradient(0deg, rgba(247,194,113,1) 0%, rgba(236,142,0,1) 100%);
+    }
+    .gradient-green{
+        background: rgb(195,246,191);
+        background: linear-gradient(0deg, rgba(195,246,191,1) 0%, rgba(84,209,73,1) 100%);
+    }
+</style>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+                    </li>
+                    <li>
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">loser</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="col py-3">
+
+            <div class="row m-2">
+                <div class="d-flex justify-content-between" style="background-color: blue;">
+                    <div class="card-info gradient-blue">
+                        <span id="fa-utensils" class="div-icon">
+                            <i class="fas fa-utensils"></i>
+                        </span>
+                        <div class="card_info-text">
+                            <p id="card_info-title">Total de Pedidos</p>
+                            <p class="number-text">{% total_order %}</p>
+                        </div>
+                    </div>
+                    <div class="card-info gradient-orange">
+                        <span id="fa-calendar-day" class="div-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </span>
+                        <div class="card_info-text">
+                            <p id="card_info-title">Pedidos hoje</p>
+                            <p class="number-text">{% total_order_today %}</p>
+                        </div>
+                    </div>
+                    <div class="card-info gradient-green">
+                        <span id="fa-chart-line" class="div-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </span>
+                        <div class="card_info-text">
+                            <p id="card_info-title">media 7 dias</p>
+                            <p class="number-text">{% total_mean_order %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div style="background-color: red;">
+                    <div class="card_pry-text">
+                        <h2 class="sec-title" style="color: white;">Pedidos</h2>
+                        <a id="btn-download" title="Relatório" href="{ url "orders:action_print_report_orders" %}">
+                            <i id="icon-download" class="far fa-file-pdf"></i>
+                        </a>
+                    </div>
+                    <table id="ordersManager">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data</th>
+                                <th>Cliente</th>
+                                <th>Produtos</th>
+                                <th>Observação</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.3/datatables.min.js"></script>
+<script>
+    // Faz a requisição para a API
+    fetch("{% url 'core:fetch_return_all_orders_by_management' %}")
+        .then(response => response.json())
+        .then(data => {
+            const tabelaUsuarios = $('#ordersManager').DataTable({
+                data: data,
+                columns: [
+                    { title: 'Id', data: 'id' },
+                    { title: 'Data', data: 'data' },
+                    { title: 'Cliente', data: 'client' },
+                    { title: 'Produtos', data: 'products' },
+                    { title: 'Observações', data: 'msg' },
+                ]
+            });
+        })
+        .catch(error => console.error('Erro:', error));
+    // $(document).ready(function(){
+    //     $("#tabela-listar").DataTable({
+    //         "order": [[ 1, "dsc" ]],
+    //         lengthMenu: [
+    //             [5, 10, 15, -1],
+    //             [5, 10, 15, 'TODOS'],
+    //         ],
+    //         searching: false, // desabilita a funcionalidade de pesquisa
+    //         "oLanguage": {
+    //             "sProcessing":   "Processando...",
+    //             "sLengthMenu":   "_MENU_ Registros",
+    //             "sZeroRecords":  "Não foram encontrados resultados",
+    //             "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+    //             "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+    //             "sInfoFiltered": "",
+    //             "sInfoPostFix":  "",
+    //             "sSearch":       "Buscar:",
+    //             "sUrl":          "",
+    //             "oPaginate": {
+    //                 "sFirst":    "Primeiro",
+    //                 "sPrevious": "Anterior",
+    //                 "sNext":     "Seguinte",
+    //                 "sLast":     "Último"
+    //             }
+    //         }
+    //     });
+    // });
+</script>
+
+{% endblock content %} 
