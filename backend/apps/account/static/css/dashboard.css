@@ -6,13 +6,13 @@ body{
 #tabela-listar {
   background-color: white;
   border-bottom: 1px solid #868585;
-  /* max-width: 100% !important; */
-  /* width: 100% !important; */
 }
 #tabela-listar th {
   color: white;
 }
 table {
+  border-radius: 6px;
+
   border-collapse: collapse;
   width: 100% !important;
 }

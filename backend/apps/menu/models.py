@@ -61,7 +61,10 @@ class Menu(TimeStampedModel, Active):
 
     def __str__(self):
         return str(self.name)
-    
+
+    @property
+    def get_product_for_order(self):
+        return ''.join(f'{item.product.name}, ' for item in self.menu_product.all())    
 # class MenuCategory(TimeStampedModel, Active):
 #     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
 #     category = models.ForeignKey(Category, on_delete=models.CASCADE)

@@ -53,7 +53,7 @@
           <ul class="dropdown-menu">
             {% if user.is_superuser %}
               <li>
-                <a class="dropdown-item" href="{% url 'logout' %}">Administrativo</a>
+                <a class="dropdown-item" href="{% url 'core:dashboard_admin' %}">Administrativo</a>
               </li>
             {% endif %}
             <li>
