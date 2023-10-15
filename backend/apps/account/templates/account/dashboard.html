@@ -221,15 +221,26 @@
   }
 
   function setProfileClient(){
-    var isSuperUser = '{{ user.is_superuser }}'
-  
-    if(isSuperUser ){
-      return "{{ user }}";
-    } else {
-      var client = document.getElementById('select-profile');
 
+    var client = document.getElementById('select-profile');
+
+    if(client){
       return client.value
+      
+    } else {
+      console.log("é null")
+      console.log(client);
+      return "{{ user }}";
     }
+    
+    // var isSuperUser = '{{ user.is_superuser }}'
+  
+    // if(isSuperUser ){
+    //   return "{{ user }}";
+    // } else {
+    //   var client = document.getElementById('select-profile');
+    //   return client.value
+    // }
   }
 
   // function getOrderNumber(){

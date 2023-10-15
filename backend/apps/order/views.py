@@ -19,6 +19,7 @@ def action_fetch_create_order(request):
     order_edit = data.get('order_number')
     produtos = data.get('produtos')
     cliente = data.get('cliente')
+    print('\n>>>>>', cliente)
     mensagem = data.get('msg')
     profile = Profile.objects.get(user__username=cliente)
 
