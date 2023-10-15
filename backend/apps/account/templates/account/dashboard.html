@@ -228,29 +228,10 @@
       return client.value
       
     } else {
-      console.log("é null")
-      console.log(client);
       return "{{ user }}";
     }
-    
-    // var isSuperUser = '{{ user.is_superuser }}'
-  
-    // if(isSuperUser ){
-    //   return "{{ user }}";
-    // } else {
-    //   var client = document.getElementById('select-profile');
-    //   return client.value
-    // }
   }
-
-  // function getOrderNumber(){
-  //   var number = '{{ order_number }}'
-  //   // console.log(number)
-  //   // if (number){
-  //   //   return number
-  //   // }
-  //   return number
-  // }
+   
   function getOrderNumber(){
     const button = document.getElementById("order-id");
     const orderId = button.getAttribute("data-order-id");
