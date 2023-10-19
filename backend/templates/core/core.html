@@ -8,8 +8,9 @@
 {% block content%}
 <style>
     #content-main{
-        background-color: #d8d0d0;
+        background-color: #e9e9e9;
     }
+    
     .gradient-blue{
         background: rgb(148,202,244);
         background: linear-gradient(0deg, rgba(148,202,244,1) 0%, rgba(0,140,247,1) 100%);
@@ -120,29 +121,49 @@
         border-radius: 6px;
         border-collapse: collapse;
         width: 100% !important;
+        overflow: hidden; 
     }
     thead {
-        background-color: #ec8e00;
+        background-color: #229cb4;
+        color: white;
+        margin-bottom: 5px;
+        border-bottom: 5px solid #e9e9e9;
     }
 
-    /* th, td{ */
-        /* margin-bottom: 5px; */
-        /* border-bottom: 5px solid #d8d0d0;  */
-        /* border-radius: 6px; */
-    /* }
 
-    tbody, th{
-        border-radius: 6px;
-    } */
-
-    table.dataTable tbody tr {
-        border-radius: 10px; /* Altere o valor conforme necessário */
+    th, td{
+        margin-bottom: 5px;
+        padding: 5px;
     }
 
     /* Adiciona um pouco de espaço entre as linhas para destacar o efeito de borda arredondada */
     table.dataTable tbody tr {
-        border-bottom: 5px solid #d8d0d0;
+        border-bottom: 5px solid #e9e9e9;
         margin-bottom: 5px; /* Altere o valor conforme necessário */
+    }
+    .page-link {
+        color: #f7f7f7;
+        border-color: #229cb4;
+        background-color: #229cb4;
+    }
+    .page-link:hover {
+        color: #fff;
+        background-color: #024ea5;
+        border-color: #229cb4;
+    }
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: #024ea5;
+        border-color: #229cb4;
+    }
+    .page-item.disabled .page-link {
+        color: #fff;
+        border-color: #229cb4;
+        background-color: #229cb4;
+    }
+    .pagination{
+        align-items: end;
     }
 
 </style>    
@@ -245,7 +266,8 @@
                                         <h4 class="my-1 text-success">{% total_order %}</h4>
                                         <p class="mb-0 font-13">-4.5% from last week</p>
                                     </div>
-                                    <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-bar-chart"></i>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                        <i class="fa-solid fa-cart-shopping"></i>
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +283,8 @@
                                         <h4 class="my-1 text-success">{% total_order_today %}</h4>
                                         <p class="mb-0 font-13">-4.5% from last week</p>
                                     </div>
-                                    <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-bar-chart"></i>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                        <i class="fa-solid fa-calendar-week"></i>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +300,8 @@
                                         <h4 class="my-1 text-success">{% total_mean_order %}</h4>
                                         <p class="mb-0 font-13">-4.5% from last week</p>
                                     </div>
-                                    <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-bar-chart"></i>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                        <i class="fa fa-bar-chart"></i>
                                     </div>
                                 </div>
                             </div>
@@ -289,7 +313,7 @@
             <div class="row m-2">
                 <div class="col-6">
                     <div >
-                        <div class="card_pry-text">
+                        <div class="card_pry-text d-flex justify-content-between">
                             <h2 class="text-secondary">Pedidos</h2>
                         </div>
                         <table id="ordersManager">
@@ -331,6 +355,7 @@
                 ],
                 "bLengthChange" : false,
                 "pageLength": 5,
+                "bInfo": false,
                 searching: false, // desabilita a funcionalidade de pesquisa
                 oLanguage: {
                     sProcessing: "Processando...",
