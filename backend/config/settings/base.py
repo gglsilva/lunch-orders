@@ -24,7 +24,7 @@ APPS_DIR = os.path.join(BASE_DIR, 'apps')
 
 SECRET_KEY = config('SECRET_KEY')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','127.0.0.1','192.168.1.29','.ngrok.io']
 
 
 # Application definition
@@ -69,11 +69,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Adicione o domínio do ngrok (sem o protocolo https://)
-NGROK_DOMAIN = 'https://26c6-131-196-67-132.ngrok-free.app' # Modificar
+NGROK_DOMAIN = 'https://7992-179-60-172-128.ngrok-free.app' # Modificar
 
 # Defina as origens confiáveis
 CSRF_TRUSTED_ORIGINS = [
-    'https://26c6-131-196-67-132.ngrok-free.app', # Modificar
+    'https://7992-179-60-172-128.ngrok-free.app', # Modificar
     # 'localhost',  # Se estiver usando localhost
     # Outros domínios confiáveis, se aplicável
 ]
