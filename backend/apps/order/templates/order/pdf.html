@@ -45,7 +45,7 @@
         <tbody>
             {% for order in orders %}
             <tr id="data">
-                <td>{{ order.client }}</td>
+                <td>{{ order.client|upper }}</td>
                 <td>{{ order.get_product_for_order }}</td>
                 <td>{{ order.note }}</td>
             </tr>
