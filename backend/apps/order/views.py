@@ -3,7 +3,7 @@ from apps.order.models import Order, OrderItem
 from apps.product.models import Product, Category
 from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
-from datetime import date
+from datetime import date, timedelta
 from weasyprint import HTML
 from django.core.files.storage import FileSystemStorage
 
@@ -107,3 +107,18 @@ def print_report_orders(request):
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="pedidos.pdf"'
     return response
+
+
+def print_report_week(request):
+    data_atual = date.today().date()
+
+    # Criar uma lista para armazenar as datas
+    datas_ultimos_5_dias = []
+
+    # Loop para obter as datas dos últimos 5 dias
+    for i in range(5):
+        data = data_atual - timedelta(days=i)
+        datas_ultimos_5_dias.append(data)
+
+    # A lista `datas_ultimos_5_dias` agora contém as datas dos últimos 5 dias.
+    print(datas_ultimos_5_dias)

@@ -55,6 +55,18 @@
         >
           <i id="icon-download" class="far fa-file-pdf"></i>
         </button>
+
+        <button
+          type="button"
+          class="btn btn-sec-custom"
+          id="print-order"
+          title="Imprimir Pedidos da semana"
+          onclick="printOrderDay()"
+          style="background-color: #d4d4d4;"
+          data-content-url="{% url 'order:print_report_week' %}"
+        >
+          <i id="icon-download" class="far fa-file-pdf"></i>
+        </button>
         {% endif %}
         <button
           type="button"

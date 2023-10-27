@@ -69,11 +69,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Adicione o domínio do ngrok (sem o protocolo https://)
-NGROK_DOMAIN = 'https://7992-179-60-172-128.ngrok-free.app' # Modificar
+NGROK_DOMAIN = 'https://9f65-149-19-166-153.ngrok-free.app' # Modificar
 
 # Defina as origens confiáveis
 CSRF_TRUSTED_ORIGINS = [
-    'https://7992-179-60-172-128.ngrok-free.app', # Modificar
+    'https://9f65-149-19-166-153.ngrok-free.app', # Modificar
     # 'localhost',  # Se estiver usando localhost
     # Outros domínios confiáveis, se aplicável
 ]
