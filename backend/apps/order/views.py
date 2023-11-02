@@ -110,15 +110,26 @@ def print_report_orders(request):
 
 
 def print_report_week(request):
-    data_atual = date.today().date()
+    # data_atual = date.today()
 
-    # Criar uma lista para armazenar as datas
-    datas_ultimos_5_dias = []
+    # # Criar uma lista para armazenar as datas
+    # datas_ultimos_5_dias = []
 
-    # Loop para obter as datas dos últimos 5 dias
-    for i in range(5):
-        data = data_atual - timedelta(days=i)
-        datas_ultimos_5_dias.append(data)
+    # # Loop para obter as datas dos últimos 5 dias
+    # for i in range(5):
+    #     data = data_atual - timedelta(days=i)
+    #     datas_ultimos_5_dias.append(data)
 
-    # A lista `datas_ultimos_5_dias` agora contém as datas dos últimos 5 dias.
-    print(datas_ultimos_5_dias)
+    # # A lista `datas_ultimos_5_dias` agora contém as datas dos últimos 5 dias.
+    # print(datas_ultimos_5_dias)
+    start = date.today()
+    end = start - timedelta(days=5)
+
+    pedidos = Order.objects.filter(created__range=(start, end))
+    
+    print("Hoje:", start)
+    print("Cinco dias atrás:", end)
+    
+    print('>>>', pedidos)
+
+    return HttpResponse("sucess")

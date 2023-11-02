@@ -45,29 +45,30 @@
       <!-- Button trigger modal -->
       <div>
         {% if user.is_superuser %}
-        <button
-          type="button"
-          class="btn btn-sec-custom"
-          id="print-order"
-          title="Imprimir Pedidos"
-          onclick="printOrderDay()"
-          data-content-url="{% url 'order:print_report_orders' %}"
-        >
-          <i id="icon-download" class="far fa-file-pdf"></i>
-        </button>
+          <button
+            type="button"
+            class="btn btn-sec-custom"
+            id="print-order"
+            title="Imprimir Pedidos"
+            onclick="printOrder('{% url "order:print_report_orders" %}')"
+            data-content-url="{% url 'order:print_report_orders' %}"
+          >
+            <i id="icon-download" class="far fa-file-pdf"></i>
+          </button>
 
-        <button
-          type="button"
-          class="btn btn-sec-custom"
-          id="print-order"
-          title="Imprimir Pedidos da semana"
-          onclick="printOrderDay()"
-          style="background-color: #d4d4d4;"
-          data-content-url="{% url 'order:print_report_week' %}"
-        >
-          <i id="icon-download" class="far fa-file-pdf"></i>
-        </button>
+          <button
+            type="button"
+            class="btn btn-sec-custom"
+            id="print-last-week-order"
+            title="Imprimir Pedidos da semana"
+            onclick="printOrder('{% url "order:print_report_week" %}')"
+            style="background-color: #d4d4d4;"
+            data-content-url="{% url 'order:print_report_week' %}"
+          >
+            <i id="icon-download" class="far fa-file-pdf"></i>
+          </button>
         {% endif %}
+
         <button
           type="button"
           class="btn btn-sec-custom"
@@ -196,24 +197,38 @@
         });
   });
 
-  function printOrderDay() {
-  const button = document.getElementById("print-order");
-  const contentUrl = button.getAttribute("data-content-url");
-
-  fetch(contentUrl)
+  function printOrder(url) {
+  fetch(url)
     .then((response) => response.blob())
     .then((blob) => {
       const url = window.URL.createObjectURL(blob);
-
-      // Abrir o PDF em uma nova guia
       window.open(url, '_blank');
-
       window.URL.revokeObjectURL(url);
     })
     .catch((error) => {
       console.error("Ocorreu um erro ao carregar o conteúdo do pdf:", error);
     });
 }
+
+
+//   function printOrderDay() {
+//   const button = document.getElementById("print-order");
+//   const contentUrl = button.getAttribute("data-content-url");
+
+//   fetch(contentUrl)
+//     .then((response) => response.blob())
+//     .then((blob) => {
+//       const url = window.URL.createObjectURL(blob);
+
+//       // Abrir o PDF em uma nova guia
+//       window.open(url, '_blank');
+
+//       window.URL.revokeObjectURL(url);
+//     })
+//     .catch((error) => {
+//       console.error("Ocorreu um erro ao carregar o conteúdo do pdf:", error);
+//     });
+// }
   
 
   function getProductSelect() {
