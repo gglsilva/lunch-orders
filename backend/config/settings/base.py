@@ -69,11 +69,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Adicione o domínio do ngrok (sem o protocolo https://)
-NGROK_DOMAIN = 'https://9f65-149-19-166-153.ngrok-free.app' # Modificar
+NGROK_DOMAIN = 'https://0615-131-196-67-134.ngrok-free.app' # Modificar
 
 # Defina as origens confiáveis
 CSRF_TRUSTED_ORIGINS = [
-    'https://9f65-149-19-166-153.ngrok-free.app', # Modificar
+    'https://0615-131-196-67-134.ngrok-free.app', # Modificar
     # 'localhost',  # Se estiver usando localhost
     # Outros domínios confiáveis, se aplicável
 ]
@@ -90,7 +90,6 @@ BUILT_IN_MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 THIRD_PARTY_MIDDLEWARE = [
