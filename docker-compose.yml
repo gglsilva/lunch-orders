@@ -4,7 +4,7 @@ services:
   web:
     build: 
       context: .
-      dockerfile: DockerfileBackend
+      dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:7000
     volumes:
       - ./backend/:/usr/src/app/
@@ -30,7 +30,7 @@ services:
   celery:
     build:
       context: .
-      dockerfile: DockerfileBackend
+      dockerfile: Dockerfile
     command: celery -A config worker -l info
     volumes:
       - ./backend/:/usr/src/app/
