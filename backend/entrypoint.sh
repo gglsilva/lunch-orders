@@ -12,7 +12,7 @@ then
 fi
 # exclusão dos dados
 #python manage.py flush --no-input
-python backend/manage.py makemigrations
-python backend/manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 
 exec "$@"
