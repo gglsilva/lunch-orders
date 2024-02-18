@@ -24,7 +24,7 @@ APPS_DIR = os.path.join(BASE_DIR, 'apps')
 
 SECRET_KEY = config('SECRET_KEY')
 
-ALLOWED_HOSTS = ['*','127.0.0.1','192.168.1.29','.ngrok.io']
+ALLOWED_HOSTS = ['*','127.0.0.1','192.168.1.29','.ngrok.io', 'onrender.com']
 
 
 # Application definition
